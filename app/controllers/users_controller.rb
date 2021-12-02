@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user, except: [:create]
 
   # GET /users
   def index
@@ -14,11 +13,21 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def signedIn
+    if current_user
+      render json: { current_user: current_user }, status: 200
+    else
+      render json: { current_user: null }, status: 401 
+    end
+  end
+
   # POST /users
   def create
     @user = User.new(user_params)
 
     if @user.save
+      access_token = Knock::AuthToken.new(payload: { user: @user.id })
+      cookie[:token] = access_token.token
       render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
