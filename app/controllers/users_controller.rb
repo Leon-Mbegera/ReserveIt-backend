@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if current_user
       render json: { current_user: current_user }, status: 200
     else
-      render json: { current_user: null }, status: 401 
+      render json: { alert: "Try again!" }, status: 401 
     end
   end
 
@@ -46,6 +46,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+  end
+
+  def signedOut
+    cookie[:token] = null
+    render json: { alert: "You've signed out" }, status: :200
   end
 
   private
