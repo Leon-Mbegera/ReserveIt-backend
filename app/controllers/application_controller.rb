@@ -5,4 +5,7 @@ class ApplicationController < ActionController::API
   def token
     session[:token]
   end
+
+  # def authenticate_user
+  # end
 end
