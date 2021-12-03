@@ -1,14 +1,8 @@
 class ApplicationController < ActionController::API
-  before_action :set_csrf_cookie
   include Knock::Authenticable
-  # include ActionController::Cookies
-  include ActionController::RequestForgeryProtection
+  include ActionController::Cookies
 
-  protect_from_forgery with: :exception
-
-  private
-
-  def set_csrf_cookie
-    cookies["CSRF-TOKEN"] = form_authenticity_token;
+  def token
+    session[:token]
   end
 end

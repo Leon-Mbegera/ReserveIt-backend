@@ -27,7 +27,6 @@ gem 'rack-cors'
 gem 'bcrypt'
 gem 'knock'
 gem 'jwt'
-gem 'simple_command'
 
 
 group :development, :test do
