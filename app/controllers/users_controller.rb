@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      access_token = Knock::AuthToken.new(payload: { sub: @user.id })
-      session[:token] = access_token.token
+      auth_token = Knock::AuthToken.new(payload: { sub: @user.id })
+      session[:token] = auth_token.token
       render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity

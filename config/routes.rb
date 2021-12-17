@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cars
   resources :users
   scope '/auth' do
     post '/signin', to: 'user_token#create'

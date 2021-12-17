@@ -8,4 +8,8 @@ class ApplicationController < ActionController::API
 
   # def authenticate_user
   # end
+
+  # def current_user
+  #   User.first
+  # end
 end
