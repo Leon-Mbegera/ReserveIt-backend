@@ -1,6 +1,6 @@
 class Reservation < ApplicationRecord
-  belongs_to :user,
-  belongs_to :car,
+  belongs_to :user
+  belongs_to :car
 
   def confirm_reservation
     self.confirmed = true
