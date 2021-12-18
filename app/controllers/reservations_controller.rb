@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :update, :destroy]
+  before_action :authenticate_user,
 
   # GET /reservations
   def index
@@ -15,7 +16,7 @@ class ReservationsController < ApplicationController
 
   # POST /reservations
   def create
-    @reservation = Reservation.new(user_id: current_user.id, car_id: reservation_params.car_id, confirmed: true )
+    @reservation = Reservation.new(user_id: current_user.id, car_id: params[:car_id], confirmed: true )
 
     if @reservation.save
       render json: @reservation, status: :created, location: @reservation
