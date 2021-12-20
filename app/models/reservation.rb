@@ -2,8 +2,8 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :car
   
-  validates :agreement, presence: true length: { maximum: "100" }
-  validates :city, presence: true length: { maximum: "20" }
+  validates :agreement, presence: true, length: { maximum: 100 }
+  validates :city, presence: true, length: { maximum: 20 }
   validates :date, presence: true
 
 
