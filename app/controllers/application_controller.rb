@@ -6,10 +6,10 @@ class ApplicationController < ActionController::API
     session[:token]
   end
 
-  # def authenticate_user
-  # end
+  def authenticate_user
+  end
 
-  # def current_user
-  #   User.first
-  # end
+  def current_user
+    User.first
+  end
 end

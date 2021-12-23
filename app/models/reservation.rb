@@ -6,6 +6,9 @@ class Reservation < ApplicationRecord
   validates :city, presence: true, length: { maximum: 20 }
   validates :date, presence: true
 
+  # def as_json(options = {})
+  #   super(options.merge(include: :car))
+  # end
 
   def confirm_reservation
     self.confirmed = true

@@ -1,25 +1,25 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :update, :destroy]
+  before_action :set_reservation, only: [:update, :destroy]
   before_action :authenticate_user,
 
   # GET /reservations
   def index
-    @reservations = current_user.reservations
-
+    @reservations = current_user.reservations.as_json(include: :car)
     render json: @reservations
   end
 
   # GET /reservations/1
   def show
-    render json: @reservation
+    @reservations1 = Reservation.where(car_id: params[:id])
+    render json: @reservations1
   end
 
   # POST /reservations
   def create
-    @reservation = Reservation.new(user_id: current_user.id, car_id: params[:car_id], confirmed: true )
+    @reservation = Reservation.new(user_id: current_user.id, car_id: reservation_params[:car_id], agreement: reservation_params[:agreement], city: reservation_params[:city], date: reservation_params[:date], confirmed: true)
 
     if @reservation.save
-      render json: @reservation, status: :created, location: @reservation
+      render json: @reservation, status: :created
     else
       render json: @reservation.errors, status: :unprocessable_entity
     end
@@ -47,6 +47,6 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:car_id)
+      params.require(:reservation).permit(:car_id, :agreement, :city, :date)
     end
 end
