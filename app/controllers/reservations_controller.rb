@@ -1,12 +1,11 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:update, :destroy]
+  before_action :set_reservation, only: %i[update destroy]
   before_action :authenticate_user,
-
-  # GET /reservations
-  def index
-    @reservations = current_user.reservations.as_json(include: :car)
-    render json: @reservations
-  end
+                # GET /reservations
+                def index
+                  @reservations = current_user.reservations.as_json(include: :car)
+                  render json: @reservations
+                end
 
   # GET /reservations/1
   def show
@@ -16,7 +15,8 @@ class ReservationsController < ApplicationController
 
   # POST /reservations
   def create
-    @reservation = Reservation.new(user_id: current_user.id, car_id: reservation_params[:car_id], agreement: reservation_params[:agreement], city: reservation_params[:city], date: reservation_params[:date], confirmed: true)
+    @reservation = Reservation.new(user_id: current_user.id, car_id: reservation_params[:car_id],
+                                   agreement: reservation_params[:agreement], city: reservation_params[:city], date: reservation_params[:date], confirmed: true)
 
     if @reservation.save
       render json: @reservation, status: :created
@@ -40,13 +40,14 @@ class ReservationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reservation
-      @reservation = Reservation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def reservation_params
-      params.require(:reservation).permit(:car_id, :agreement, :city, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def reservation_params
+    params.require(:reservation).permit(:car_id, :agreement, :city, :date)
+  end
 end

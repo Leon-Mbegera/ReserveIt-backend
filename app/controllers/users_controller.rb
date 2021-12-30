@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
   before_action :authenticate_user, except: [:create]
 
   # GET /users
@@ -14,11 +14,11 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  def signedIn
+  def signed_in
     if current_user
       render json: { current_user: current_user }, status: :ok
     else
-      render json: { alert: "Try again!" }, status: 401 
+      render json: { alert: 'Try again!' }, status: 401
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
     if @user.save
       auth_token = Knock::AuthToken.new(payload: { sub: @user.id })
-      
+
       render json: { user: @user, token: auth_token.token }, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -49,19 +49,20 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
-  def signedOut
-    auth_token = nil
-    render json: { alert: "You've signed out" }, status: :ok
-  end
+  # def signedOut
+  #   auth_token = nil
+  #   render json: { alert: "You've signed out" }, status: :ok
+  # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
 end
