@@ -1,7 +1,7 @@
 class UserTokenController < Knock::AuthTokenController
   skip_before_action :verify_authenticity_token, raise: false
   def create
-    session[:token] = auth_token.token
-    render json: { username: User.find(auth_token.payload[:sub]).username }, status: :created
+    user_token = auth_token.token
+    render json: { token: user_token }
   end
 end

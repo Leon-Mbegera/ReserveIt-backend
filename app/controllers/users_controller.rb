@@ -28,8 +28,8 @@ class UsersController < ApplicationController
 
     if @user.save
       auth_token = Knock::AuthToken.new(payload: { sub: @user.id })
-      session[:token] = auth_token.token
-      render json: @user, status: :created
+      
+      render json: { user: @user, token: auth_token.token }, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   def signedOut
-    session[:token] = nil
+    auth_token = nil
     render json: { alert: "You've signed out" }, status: :ok
   end
 
