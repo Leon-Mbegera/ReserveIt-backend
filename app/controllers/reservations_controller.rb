@@ -15,8 +15,11 @@ class ReservationsController < ApplicationController
 
   # POST /reservations
   def create
-    @reservation = Reservation.new(user_id: current_user.id, car_id: reservation_params[:car_id],
-                                   agreement: reservation_params[:agreement], city: reservation_params[:city], date: reservation_params[:date], confirmed: true)
+    @reservation = Reservation.new(user_id: current_user.id, 
+                                    car_id: reservation_params[:car_id],
+                                    agreement: reservation_params[:agreement], 
+                                    city: reservation_params[:city], 
+                                    date: reservation_params[:date], confirmed: true)
 
     if @reservation.save
       render json: @reservation, status: :created
