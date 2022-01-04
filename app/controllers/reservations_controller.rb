@@ -42,14 +42,13 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
   end
-
+  
   private
-
+  
   # Use callbacks to share common setup or constraints between actions.
   def set_reservation
-    @reservation = Reservation.find(params[:id])
+    @reservation = current_user.reservations.find(params[:id])
   end
-
   # Only allow a list of trusted parameters through.
   def reservation_params
     params.require(:reservation).permit(:car_id, :agreement, :city, :date)
