@@ -15,15 +15,6 @@ ActiveRecord::Schema.define(version: 2021_12_20_145906) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cars", force: :cascade do |t|
-    t.string "image"
-    t.string "model"
-    t.string "mileage"
-    t.integer "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "car_id"
