@@ -88,7 +88,7 @@ Car.create([
   },
   {
     image: 'https://www.bmw.ca/content/dam/bmw/common/all-models/5-series/sedan/2020/navigation/bmw-5-series-sedan-POSI-modelfinder.png',
-    model: 'BMW 528i'
+    model: 'BMW 528i',
     engine_type: '4-Cylinder(I4)',
     transmission: 'Automatic 4WD',
     fuel_type: '3000cc Petrol ',
@@ -115,6 +115,7 @@ Car.create([
     interior_color: 'Pearl',
     exterior_color: 'Black',
     price: '5.80M'
+  },
   {
     image: 'https://cdn.motor1.com/images/mgl/Ee2GN/s1/2019-vw-passat-variant-r-line-edition.jpg',
     model: 'Volkswagen Passat',
@@ -137,7 +138,7 @@ Car.create([
   },
   {
     image: 'https://media.fastestlaps.com/toyota-crown-athlete-trd.jpg',
-    model: 'Toyota Crown Athlete'
+    model: 'Toyota Crown Athlete',
     engine_type: '4-Cylinder(I4)',
     transmission: 'Automatic 4WD',
     fuel_type: '3400cc Petrol',
@@ -147,7 +148,7 @@ Car.create([
   }, 
   {
     image: 'https://www.bestcarsforsaleinkenya.co.ke/wp-content/uploads/2022/01/chevrolet-captiva-1.jpg.webp',
-    model: 'Chevrolet Captiva'
+    model: 'Chevrolet Captiva',
     engine_type: '3-Cylinder(l3)',
     transmission: 'Automatic 4WD',
     fuel_type: '2200cc Petrol',
@@ -157,7 +158,7 @@ Car.create([
   }, 
   {
     image: 'https://www.ccarprice.com/products/Audi-A3-Sportback-2021_1.jpg',
-    model: 'Audi A3 Sportback'
+    model: 'Audi A3 Sportback',
     engine_type: '4-Cylinder(l4)',
     transmission: 'Automatic 4WD',
     fuel_type: '2000cc Petrol',
