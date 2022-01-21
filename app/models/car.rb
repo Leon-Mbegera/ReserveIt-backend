@@ -11,5 +11,5 @@ class Car < ApplicationRecord
   validates :interior_color, presence: true
   validates :exterior_color, presence: true
   validates :price, presence: true
-
+  
 end
