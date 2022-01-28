@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[update destroy]
   # before_action :authenticate_user,
-  
+
   # GET /reservations
   def index
     @reservations = current_user.reservations.as_json(include: :car)
@@ -42,13 +42,14 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
   end
-  
+
   private
-  
+
   # Use callbacks to share common setup or constraints between actions.
   def set_reservation
     @reservation = current_user.reservations.find(params[:id])
   end
+
   # Only allow a list of trusted parameters through.
   def reservation_params
     params.require(:reservation).permit(:car_id, :agreement, :city, :date)
