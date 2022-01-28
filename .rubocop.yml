@@ -40,9 +40,11 @@ Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
-Style/EndOfLine:
-  EnforcedStyle: lf
 
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+  Enabled: False
 Layout/HashAlignment:
   EnforcedColonStyle: key
 Layout/ExtraSpacing:
@@ -50,8 +52,6 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
-Layout/EndOfLine:
-   Enabled: False
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
